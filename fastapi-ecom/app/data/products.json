@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "string",
+    "brand": "string",
+    "price": 999,
+    "imageUrl": [
+      "https://example.com/"
+    ],
+    "seller": {
+      "name": "string",
+      "email": "user@example.com"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Wireless-Mouse",
+    "brand": "Logitech",
+    "price": 1200,
+    "imageUrl": [
+      "https://example.com/images/logitech-mouse.jpg"
+    ],
+    "seller": {
+      "name": "MouseHub",
+      "email": "mousehub@example.com"
+    }
+  }
+]
