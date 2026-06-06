@@ -25,7 +25,7 @@ def list_products(
      default=False,
      description="Sort products by price"),
      
-     offset:int=Query(default=1,
+     offset:int=Query(default=0,
                  description="offset limit"
          
      ),
@@ -47,7 +47,7 @@ def list_products(
 
         if not products:
             raise HTTPException(status_code=404,detail=f"not found for={name}")
-        if sort_by_price:
+    if sort_by_price:
             reverse=order=="desc"
             products=sorted(products,key=lambda p:p.get("price",0),reverse=reverse)
     total = len(products)
@@ -69,8 +69,12 @@ def get_product_byid(id:int):
 @app.post("/products",status_code=201)
 
 def create_products(product:Product):
-    product_dict=product.model_dump(mode="json")
-    product_dict["id"]=10
+    product_dict = product.model_dump(mode="json")
+
+    products = get_all_products()
+    new_id = max([p["id"] for p in products], default=0) + 1
+
+    product_dict["id"] = new_id
     try:
         add_product(product_dict)
     except:

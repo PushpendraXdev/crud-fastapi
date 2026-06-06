@@ -25,13 +25,28 @@ def add_product(product:Dict)->Dict:
     save_product(products)
     return product
 
-def remove_product(id:int)->str:
+# def remove_product(id:int)->str:
+#     products=get_all_products()
+#     for idx,product in enumerate(products):
+#         if product["id"]==int(id):
+#             deleted=products.pop(idx)
+#             save_product(products)
+#             return {"message":"product deleted success","data":deleted}
+
+def remove_product(id:int)->Dict:
     products=get_all_products()
+
     for idx,product in enumerate(products):
-        if product["id"]==int(id):
-            deleted=products.pop(idx)
+        if product["id"] == int(id):
+            deleted = products.pop(idx)
             save_product(products)
-            return {"message":"product deleted success","data":deleted}
+
+            return {
+                "message":"product deleted success",
+                "data":deleted
+            }
+
+    raise ValueError("product not found")
         
 def update_product(id:int,update_data:Dict):
     products=get_all_products()

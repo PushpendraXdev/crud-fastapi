@@ -32,8 +32,8 @@ class Seller(BaseModel):
 
 # field valdiator of cheack - and comuted field for calculated coloumn
 class Product(BaseModel):
-    id:int
-    name:Annotated[str,Field(min_length=3,max_length=50)]
+    id: int | None = None
+    name: Annotated[str, Field(min_length=3, max_length=50)]
     brand:Annotated[str,Field(description="enter product brand name")]
     price:Annotated[int,Field(ge=0)]
     imageUrl:Annotated[
